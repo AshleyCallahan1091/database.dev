@@ -9,7 +9,6 @@ function pageController()
 
     var_dump($select);
 
-    $team = [];
 
     if (Input::isPost()) {
         $name = Input::get('name');
@@ -18,7 +17,7 @@ function pageController()
         var_dump($name, $league, $stadium, $teamId);
         // Write the UPDATE statement for a team
         // Either interpolate or concatenate the PHP variables
-        $update = "UPDATE teams SET $name = '', $league = '', $stadium = ''";
+        $update = "UPDATE teams SET $name = '$name', $league = '$league', $stadium = '$stadium'";
         // Copy the resulting query and verify that it runs using the terminal
         var_dump($update);
     }
@@ -37,7 +36,7 @@ extract(pageController());
 <body>
 <div class="container">
     <div class="Row">
-        <div class="page-header"><h1>Edit <?= $team['name']?></h1></div>
+        <div class="page-header"><h1>Edit</h1></div>
         <form method="post" class="form-horizontal" action="?team_id=1">
             <?php include '../partials/team-form.phtml' ?>
             <div class="form-group">
